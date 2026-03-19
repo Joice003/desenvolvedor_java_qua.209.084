@@ -8,7 +8,7 @@ public class App {
         String nome;
         double peso;
         double altura;
-        double IMC;
+        double imc;
 
         // instancia a classe
         Scanner sc = new Scanner(System.in);
@@ -21,21 +21,22 @@ public class App {
         System.out.println("Informe sua altura em metros:");
         altura = sc.nextDouble();
 
-        IMC = peso/(altura*altura);
+        // cálculo imc
+        imc = peso/(altura*altura);
 
         // condicional 
-        if (IMC < 18.5) {
+        if (imc < 18.5) {
             System.out.println(nome + " está abaixo do peso.");
         }
-        else if (IMC <=25) {
+        else if (imc <25) {
             System.out.println(nome + " está no peso ideal");
         }
-        else if (IMC <=30) {
+        else if (imc <30) {
             System.out.println(nome + " está acima do peso.");
         }
-        else if (IMC <=35) {
+        else if (imc <35) {
             System.out.println(nome + " está obeso.");
-        }else if (IMC <=40) {
+        }else if (imc <40) {
             System.out.println(nome + " está com obesidade nível 2.");
         }else {
             System.out.println(nome + " está com obesidade mórbida.");
