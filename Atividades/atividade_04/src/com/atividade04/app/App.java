@@ -16,7 +16,7 @@ public class App {
         System.out.println("Informe a Placa do veículo:");
         veiculo.placa = sc.nextLine();
         System.out.println("Informe o Ano do veículo:");
-        veiculo.ano = sc.nextInt();
+        veiculo.ano = sc.nextLine();
         System.out.println("Informe a cor do veículo:");
         veiculo.cor = sc.nextLine();
 
@@ -24,7 +24,7 @@ public class App {
         veiculo.fabricante = "Fiat";
         veiculo.modelo = "Mobi";
         veiculo.placa = "A7B2KSE";
-        veiculo.ano = 2019;
+        veiculo.ano = "2019";
         veiculo.cor = "Azul";
 
         // saida de dados
