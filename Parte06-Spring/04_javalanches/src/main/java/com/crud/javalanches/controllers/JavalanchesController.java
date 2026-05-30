@@ -24,28 +24,34 @@ public class JavalanchesController {
         return "index";
     }
 
-   @GetMapping("/novaCategoria")
-   public String novaCategoria() {
-    return "nova_categoria";
-   }
+    @GetMapping("/novaCategoria")
+    public String novaCategoria() {
+        return "nova_categoria";
+    }
 
-   @PostMapping("/novaCategoria")
-   public String novaCategoria(Categoria categoria) {
-    categoriaRepository.save(categoria);
-    return "categoria_sucesso";
-   }
+    @PostMapping("/novaCategoria")
+    public String novaCategoria(Categoria categoria) {
+        categoriaRepository.save(categoria);
+        return "categoria_sucesso";
+    }
 
-   @GetMapping("/novoProduto")
-   public String novoProduto(Model model) {
-    model.addAttribute("categorias", categoriaRepository.findAll());
-    return "novo_produto";
-   }
+    @GetMapping("/novoProduto")
+    public String novoProduto(Model model) {
+        model.addAttribute("categorias", categoriaRepository.findAll());
+        return "novo_produto";
+    }
 
-   @PostMapping("/novoProduto")
-   public String novoProduto(Produto produto, @RequestParam("categoriaId") Long categoriaId) {
-    Categoria categoria = categoriaRepository.findById(categoriaId).orElse(null);
-    produto.setCategoria(categoria);
-    produtoRepository.save(produto);
-    return "produto_sucesso";
-   }
+    @PostMapping("/novoProduto")
+    public String novoProduto(Produto produto, @RequestParam("categoriaId") Long categoriaId) {
+        Categoria categoria = categoriaRepository.findById(categoriaId).orElse(null);
+        produto.setCategoria(categoria);
+        produtoRepository.save(produto);
+        return "produto_sucesso";
+    }
+
+    @GetMapping("/listarProdutos")
+    public String listarProdutos(Model model) {
+        model.addAttribute("categorias", categoriaRepository.findAll());
+        return "listar_produtos";
+    }
 }
