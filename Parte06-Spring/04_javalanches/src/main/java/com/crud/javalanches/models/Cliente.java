@@ -38,7 +38,7 @@ public class Cliente {
     private List<Pedido> pedidos = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "cliente_endereco", joinColumns = @JoinColumn(name = "cliente_id"), inverseJoinColumns = @JoinColumn(name = "enderco_id"))
+    @JoinTable(name = "cliente_endereco", joinColumns = @JoinColumn(name = "cliente_id"), inverseJoinColumns = @JoinColumn(name = "endereco_id"))
     private List<Endereco> enderecos = new ArrayList<>();
 
     public Cliente() {

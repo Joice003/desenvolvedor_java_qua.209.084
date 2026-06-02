@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+<head>
+    <title>Javalanches - Cadastrar novo cliente</title>
+</head>
+<body>
+   <main>
+    <h1>Cadastrar novo cliente</h1>
+    <hr>
+    <form method="POST">
+        <div class="row">
+            <div class="col-12 col-lg-4 mb-3">
+                <label for="nomeCliente" class="form-label">Nome do cliente:</label>
+                <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required>
+            </div>
+            <div class="col-12 col-lg-4 mb-3">
+                <label for="cpfCliente" class="form-label">CPF do cliente:</label>
+                <input type="text" class="form-control" id="cpfCliente" name="cpfCliente" required>
+            </div>
+            <div class="col-12 col-lg-4 mb-3">
+                <label for="emailCliente" class="form-label">E-mail do cliente:</label>
+                <input type="text" class="form-control" id="emailCliente" name="emailCliente" required>
+            </div>
+            <div class="col-12 col-lg-4 mb-3">
+                <label for="telefoneCliente" class="form-label">Telefone do cliente:</label>
+                <input type="text" class="form-control" id="telefoneCliente" name="telefoneCliente" required>
+            </div>
+            <div class="col-12 col-lg-4 mb-3">
+                <label for="dataNascimento" class="form-label">Data de nascimento do cliente:</label>
+                <input type="text" class="form-control" id="dataNascimento" name="dataNascimento" required>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <label for="enderecoCliente" class="form-label">Informe o endereço do cliente</label>
+                <input type="text" class="form-control" id="enderecoCliente" required>
+            </div>
+        </div>
+    </form>
+    <!-- TODO: crie um formulário de cadastro de clientes. -->
+    <!-- NOTE: inclua os campos do endereço no mesmo formulário -->
+    <!-- NOTE: ao terminar, faça as interfaces do cliente e do endereço. -->
+   </main> 
+</body>
+</html>
