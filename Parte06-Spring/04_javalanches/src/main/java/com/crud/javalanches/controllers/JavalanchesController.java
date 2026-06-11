@@ -2,11 +2,18 @@ package com.crud.javalanches.controllers;
 
 // REVIEW: revisar os imports e remover os que não estão sendo usados
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crud.javalanches.models.Categoria;
 import com.crud.javalanches.models.Endereco;
@@ -23,8 +30,6 @@ public class JavalanchesController {
     private CategoriaRepository categoriaRepository;
     @Autowired
     private ProdutoRepository produtoRepository;
-
-    // TODO: adicionar as injeções de dependência para ClienteRepository e EnderecoRepository
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
@@ -66,13 +71,22 @@ public class JavalanchesController {
         return "listar_produtos";
     }
 
-    // TODO: implementar o método para acessar formulário de cadastro de cliente
+    // TODO: implementar o método listarClientes para exibir a lista de clientes cadastrados
+    @GetMapping("/listarClientes")
+    public String listarClientes(Model model, @RequestParam(defaultValue = "0") int pagina) {
+        Pageable pageable = PageRequest.of(pagina, 50, Sort.by("codigoCliente").ascending());
+        Page<Cliente> clientes = clienteRepository.findAll(pageable);
+
+        model.addAttribute("clientes", clientes);
+        model.addAttribute("paginaAtual", pagina);
+        return "listar_clientes";
+    }
+
     @GetMapping("/novoCliente")
     public String novoCliente() {
         return "novo_cliente";
     }
 
-    // TODO: implementar o método para salvar um novo cliente, incluindo o endereço
     @PostMapping("/novoCliente")
     public String novoCliente(Cliente cliente, Endereco endereco) {
         cliente.getEnderecos().add(endereco);
@@ -81,5 +95,19 @@ public class JavalanchesController {
         enderecoRepository.save(endereco);
         clienteRepository.save(cliente);
         return "cliente_sucesso";
+    }
+
+    @GetMapping("/atualizarCategoria")
+    public String atualizarCategoria(@RequestParam("codigoCategoria") Long codigoCategoria, Model model) {
+        Categoria categoria = categoriaRepository.findById(codigoCategoria).orElse(null);
+        model.addAttribute("categoria", categoria);
+        return "atualizar_categoria";
+    }
+
+    // FIXME: postmapping está cadastrando nova categoria, mas não está atualizando
+    @PostMapping("/atualizarCategoria")
+    public String atualizarCategoria(Categoria categoria) {
+        categoriaRepository.save(categoria);
+        return "atualizar_categoria_sucesso";
     }
 }
